@@ -17,6 +17,17 @@ class _HomeScreenStateState extends State<HomeScreenState> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        actions: [
+          //pop up menu
+          PopupMenuButton(itemBuilder: (BuildContext context) {
+            return {'setting', 'Profile', 'refresh'}.map((String choice) {
+              return PopupMenuItem(
+                child: Text(choice),
+                value: choice,
+              );
+            }).toList();
+          })
+        ],
         backgroundColor: Theme.of(context).primaryColor,
         centerTitle: true,
         title: Text("Weather App"),
@@ -279,4 +290,16 @@ class _HomeScreenStateState extends State<HomeScreenState> {
       ),
     );
   }
+}
+
+List<PopupMenuEntry<String>> getFruitMenuItems() {
+  List<PopupMenuEntry<String>> items = [];
+  var fruits = ['banana', 'apple', 'lemon'];
+  for (var fruit in fruits) {
+    items.add(PopupMenuItem(
+      value: fruit,
+      child: Text(fruit),
+    ));
+  }
+  return items;
 }
